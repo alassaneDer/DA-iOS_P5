@@ -8,17 +8,37 @@
 import Foundation
 
 class AuthenticationViewModel: ObservableObject {
-    @Published var username: String = ""
-    @Published var password: String = ""
+    @Published var username: String = "test@aura.app"
+    @Published var password: String = "test123"
+    @Published var errorMessage: String?
     
+    private let auraService: AuraService
     let onLoginSucceed: (() -> ())
     
-    init(_ callback: @escaping () -> ()) {
+    init(auraService: AuraService = AuraService.shared, _ callback: @escaping () -> ()) {
+        self.auraService = auraService
         self.onLoginSucceed = callback
     }
     
     func login() {
+        errorMessage = nil
+        let defaults = UserDefaults.standard  // pour stocker token : à changer plutard
+        
+        auraService.login(username: username, password: password) { result in
+            DispatchQueue.main.async {
+                switch result {
+                    case .success(let token):
+                        defaults.setValue(token, forKey: "auraToken")   // pour stocker token
+                    self.onLoginSucceed()
+                    case .failure:
+                    self.errorMessage = "Login or Password invalid"
+                }
+            }
+          
+        }
+        
+        
+        
         print("login with \(username) and \(password)")
-        onLoginSucceed()
     }
 }

@@ -1,22 +1,48 @@
-//
-//  AccountDetailViewModel.swift
-//  Aura
-//
-//  Created by Vincent Saluzzo on 29/09/2023.
-//
+////
+////  AccountDetailViewModel.swift
+////  Aura
+////
+////  Created by Vincent Saluzzo on 29/09/2023.
+////
+
 
 import Foundation
 
+
 class AccountDetailViewModel: ObservableObject {
-    @Published var totalAmount: String = "€12,345.67"
-    @Published var recentTransactions: [Transaction] = [
-        Transaction(description: "Starbucks", amount: "-€5.50"),
-        Transaction(description: "Amazon Purchase", amount: "-€34.99"),
-        Transaction(description: "Salary", amount: "+€2,500.00")
-    ]
     
-    struct Transaction {
-        let description: String
-        let amount: String
+    @Published var currentBalance: String = ""
+    @Published var transactions: [AccountTransaction] = []
+    @Published var recentTransactions: [AccountTransaction] = []
+    
+    private let auraService: AuraService
+    
+    init(auraService: AuraService = AuraService.shared) {
+        self.auraService = auraService
+    }
+
+    func getAllAccount() {
+        // recupère le token : sans lui pas d'autorisation
+        let defaults = UserDefaults.standard
+        guard let token = defaults.string(forKey: "auraToken") else {
+            return
+        }
+        
+        
+        // appel de notre func  appel api
+        auraService.getAllAccounts(token: token) { (result) in
+            switch result {
+            case .success(let accountDatas):
+                DispatchQueue.main.async {
+                    self.currentBalance = accountDatas.currentBalanceString
+                    self.transactions = accountDatas.transactions
+                    let slice = self.transactions.prefix(3)
+                    self.recentTransactions = Array(slice)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
     }
 }

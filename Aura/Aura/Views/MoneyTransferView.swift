@@ -63,6 +63,8 @@ struct MoneyTransferView: View {
                     .cornerRadius(8)
                 }
                 .buttonStyle(PlainButtonStyle())
+                .opacity(!viewModel.isTransfertCompleted ? 1 : 0.9)
+//                .disabled(viewModel.isTransfertCompleted)
 
                 // Message
                 if !viewModel.transferMessage.isEmpty {

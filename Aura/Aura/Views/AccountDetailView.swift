@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct AccountDetailView: View {
-    @ObservedObject var viewModel: AccountDetailViewModel
+    @State private var isTransactionAppear = false
+    @ObservedObject var viewModel: AccountDetailViewModel = AccountDetailViewModel()
     
     var body: some View {
         VStack(spacing: 20) {
             // Large Header displaying total amount
             VStack(spacing: 10) {
-                Text("Your Balance")
+                Text("Total ammount")
                     .font(.headline)
-                Text(viewModel.totalAmount)
+                Text("\(viewModel.currentBalance)")
                     .font(.system(size: 60, weight: .bold))
                     .foregroundColor(Color(hex: "#94A684")) // Using the green color you provided
                 Image(systemName: "eurosign.circle.fill")
@@ -32,26 +33,31 @@ struct AccountDetailView: View {
                 Text("Recent Transactions")
                     .font(.headline)
                     .padding([.horizontal])
-                ForEach(viewModel.recentTransactions, id: \.description) { transaction in
-                    HStack {
-                        Image(systemName: transaction.amount.contains("+") ? "arrow.up.right.circle.fill" : "arrow.down.left.circle.fill")
-                            .foregroundColor(transaction.amount.contains("+") ? .green : .red)
-                        Text(transaction.description)
-                        Spacer()
-                        Text(transaction.amount)
-                            .fontWeight(.bold)
-                            .foregroundColor(transaction.amount.contains("+") ? .green : .red)
+                VStack {
+                    List (viewModel.recentTransactions, id: \.label) { transaction in
+                        HStack {
+                            Image(systemName: transaction.valueString.contains("-") ? "arrow.down.right.circle.fill" : "arrow.up.left.circle.fill")
+                                .foregroundStyle(transaction.valueString.contains("-") ? .red : .green)
+                            Text("\(transaction.label)")
+                            Spacer()
+                            Text("\(transaction.valueString)")
+                                .bold()
+                                .foregroundStyle(transaction.valueString.contains("-") ? .red : .green)
+                        }
+                        .padding()
+                        .background(.gray.opacity(0.1))
+                        .cornerRadius(8)
+                        .listRowSeparator(.hidden)
+                        //                        .padding([.horizontal])
                     }
-                    .padding()
-                    .background(Color.gray.opacity(0.1))
-                    .cornerRadius(8)
-                    .padding([.horizontal])
+                    .listStyle(.plain)
                 }
             }
             
             // Button to see details of transactions
             Button(action: {
                 // Implement action to show transaction details
+                isTransactionAppear = true
             }) {
                 HStack {
                     Image(systemName: "list.bullet")
@@ -66,13 +72,19 @@ struct AccountDetailView: View {
             
             Spacer()
         }
-        .onTapGesture {
-                    self.endEditing(true)  // This will dismiss the keyboard when tapping outside
-                }
-    }
         
+        .onTapGesture {
+            self.endEditing(true)  // This will dismiss the keyboard when tapping outside
+        }
+        .onAppear{
+            viewModel.getAllAccount()
+        }
+        .sheet(isPresented: $isTransactionAppear, content: {
+            TransactionListView(viewModel: viewModel)
+        })
+    }
 }
 
 #Preview {
-    AccountDetailView(viewModel: AccountDetailViewModel())
+    AccountDetailView()
 }
