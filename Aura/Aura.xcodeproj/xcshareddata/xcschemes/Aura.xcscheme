@@ -34,7 +34,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EDA64B752C4AE2B200986F01"
+               BlueprintIdentifier = "EDA18CF52C46F26F00726A7C"
                BuildableName = "AuraTests.xctest"
                BlueprintName = "AuraTests"
                ReferencedContainer = "container:Aura.xcodeproj">
