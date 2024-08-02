@@ -30,7 +30,6 @@ struct TransactionListView: View {
                     .background(.gray.opacity(0.1))
                     .cornerRadius(8)
                     .listRowSeparator(.hidden)
-//                        .padding([.horizontal])
                 }
                 .listStyle(.plain)
             }

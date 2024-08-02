@@ -48,7 +48,6 @@ struct AccountDetailView: View {
                         .background(.gray.opacity(0.1))
                         .cornerRadius(8)
                         .listRowSeparator(.hidden)
-                        //                        .padding([.horizontal])
                     }
                     .listStyle(.plain)
                 }
@@ -77,7 +76,9 @@ struct AccountDetailView: View {
             self.endEditing(true)  // This will dismiss the keyboard when tapping outside
         }
         .onAppear{
-            viewModel.getAllAccount()
+            DispatchQueue.main.async {
+                viewModel.getAccountVM()
+            }
         }
         .sheet(isPresented: $isTransactionAppear, content: {
             TransactionListView(viewModel: viewModel)

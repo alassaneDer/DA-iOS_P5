@@ -56,7 +56,9 @@ struct AuthenticationView: View {
                         
                         Button(action: {
                             // Handle authentication logic here
-                            viewModel.login()
+                            DispatchQueue.main.async {
+                                viewModel.loginVM()
+                            }
                         }) {
                             Text("Se connecter")
                                 .foregroundColor(.white)

@@ -52,7 +52,11 @@ struct MoneyTransferView: View {
                         .keyboardType(.decimalPad)
                 }
 
-                Button(action: viewModel.sendMoney) {
+                Button(action: {
+                    DispatchQueue.main.async {
+                        viewModel.sendMoneyVM()
+                    }
+                }) {
                     HStack {
                         Image(systemName: "arrow.right.circle.fill")
                         Text("Send")
@@ -64,7 +68,6 @@ struct MoneyTransferView: View {
                 }
                 .buttonStyle(PlainButtonStyle())
                 .opacity(!viewModel.isTransfertCompleted ? 1 : 0.9)
-//                .disabled(viewModel.isTransfertCompleted)
 
                 // Message
                 if !viewModel.transferMessage.isEmpty {

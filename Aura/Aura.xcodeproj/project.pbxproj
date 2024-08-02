@@ -20,14 +20,13 @@
 		53D4189F2AC717890070ADB1 /* MoneyTransferViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D4189E2AC717890070ADB1 /* MoneyTransferViewModel.swift */; };
 		53D418A12AC71B8F0070ADB1 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D418A02AC71B8F0070ADB1 /* View+Extensions.swift */; };
 		ED49E6582C1611D0006472C0 /* AuraServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED49E6572C1611D0006472C0 /* AuraServices.swift */; };
-		ED9970312C4866B700BED7B1 /* FakeLoginDatas.json in Resources */ = {isa = PBXBuildFile; fileRef = ED9970302C4866B700BED7B1 /* FakeLoginDatas.json */; };
 		ED9F37582C595D1F00C92599 /* FakeAccountDatas.json in Resources */ = {isa = PBXBuildFile; fileRef = ED9F37572C595D1F00C92599 /* FakeAccountDatas.json */; };
-		ED9F375A2C595D5E00C92599 /* FakeTransfertMoneyDatas.json in Resources */ = {isa = PBXBuildFile; fileRef = ED9F37592C595D5E00C92599 /* FakeTransfertMoneyDatas.json */; };
-		ED9F375D2C595DDE00C92599 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F375C2C595DDE00C92599 /* MockAuthenticationService.swift */; };
-		ED9F375F2C595E0A00C92599 /* AuraViewmodelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9F375E2C595E0A00C92599 /* AuraViewmodelTest.swift */; };
-		EDA18CF92C46F26F00726A7C /* AuraServiceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA18CF82C46F26F00726A7C /* AuraServiceTestCase.swift */; };
-		EDA18D022C46F4C300726A7C /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA18D012C46F4C300726A7C /* FakeResponseData.swift */; };
-		EDA18D042C470D6300726A7C /* URLSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA18D032C470D6300726A7C /* URLSessionFake.swift */; };
+		EDAC150F2C5CE86F00FEA0DE /* AuraServiceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAC150E2C5CE86F00FEA0DE /* AuraServiceTestCase.swift */; };
+		EDAC15112C5CE8BA00FEA0DE /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAC15102C5CE8BA00FEA0DE /* FakeResponseData.swift */; };
+		EDAC15132C5CE8DF00FEA0DE /* URLSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAC15122C5CE8DF00FEA0DE /* URLSessionFake.swift */; };
+		EDAC15172C5CE93D00FEA0DE /* FakeLoginDatas.json in Resources */ = {isa = PBXBuildFile; fileRef = EDAC15162C5CE93D00FEA0DE /* FakeLoginDatas.json */; };
+		EDAC151B2C5CE98200FEA0DE /* FakeTransfertDatas.json in Resources */ = {isa = PBXBuildFile; fileRef = EDAC151A2C5CE98200FEA0DE /* FakeTransfertDatas.json */; };
+		EDAC151D2C5CE9A500FEA0DE /* AuraViewmodelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAC151C2C5CE9A500FEA0DE /* AuraViewmodelTest.swift */; };
 		EDD3F78B2C30A16A0026F551 /* TransactionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD3F78A2C30A16A0026F551 /* TransactionListView.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,15 +55,14 @@
 		53D4189E2AC717890070ADB1 /* MoneyTransferViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyTransferViewModel.swift; sourceTree = "<group>"; };
 		53D418A02AC71B8F0070ADB1 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		ED49E6572C1611D0006472C0 /* AuraServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuraServices.swift; sourceTree = "<group>"; };
-		ED9970302C4866B700BED7B1 /* FakeLoginDatas.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FakeLoginDatas.json; sourceTree = "<group>"; };
 		ED9F37572C595D1F00C92599 /* FakeAccountDatas.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FakeAccountDatas.json; sourceTree = "<group>"; };
-		ED9F37592C595D5E00C92599 /* FakeTransfertMoneyDatas.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FakeTransfertMoneyDatas.json; sourceTree = "<group>"; };
-		ED9F375C2C595DDE00C92599 /* MockAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthenticationService.swift; sourceTree = "<group>"; };
-		ED9F375E2C595E0A00C92599 /* AuraViewmodelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuraViewmodelTest.swift; sourceTree = "<group>"; };
 		EDA18CF62C46F26F00726A7C /* AuraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EDA18CF82C46F26F00726A7C /* AuraServiceTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuraServiceTestCase.swift; sourceTree = "<group>"; };
-		EDA18D012C46F4C300726A7C /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
-		EDA18D032C470D6300726A7C /* URLSessionFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionFake.swift; sourceTree = "<group>"; };
+		EDAC150E2C5CE86F00FEA0DE /* AuraServiceTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuraServiceTestCase.swift; sourceTree = "<group>"; };
+		EDAC15102C5CE8BA00FEA0DE /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
+		EDAC15122C5CE8DF00FEA0DE /* URLSessionFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionFake.swift; sourceTree = "<group>"; };
+		EDAC15162C5CE93D00FEA0DE /* FakeLoginDatas.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FakeLoginDatas.json; sourceTree = "<group>"; };
+		EDAC151A2C5CE98200FEA0DE /* FakeTransfertDatas.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FakeTransfertDatas.json; sourceTree = "<group>"; };
+		EDAC151C2C5CE9A500FEA0DE /* AuraViewmodelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuraViewmodelTest.swift; sourceTree = "<group>"; };
 		EDD3F78A2C30A16A0026F551 /* TransactionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -173,33 +171,16 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		ED9F37562C595BEB00C92599 /* ServiceTest */ = {
-			isa = PBXGroup;
-			children = (
-				EDA18CF82C46F26F00726A7C /* AuraServiceTestCase.swift */,
-				EDA18D012C46F4C300726A7C /* FakeResponseData.swift */,
-				EDA18D032C470D6300726A7C /* URLSessionFake.swift */,
-			);
-			path = ServiceTest;
-			sourceTree = "<group>";
-		};
-		ED9F375B2C595D9A00C92599 /* ViewModelTests */ = {
-			isa = PBXGroup;
-			children = (
-				ED9F375C2C595DDE00C92599 /* MockAuthenticationService.swift */,
-				ED9F375E2C595E0A00C92599 /* AuraViewmodelTest.swift */,
-			);
-			path = ViewModelTests;
-			sourceTree = "<group>";
-		};
 		EDA18CF72C46F26F00726A7C /* AuraTests */ = {
 			isa = PBXGroup;
 			children = (
+				EDAC150E2C5CE86F00FEA0DE /* AuraServiceTestCase.swift */,
+				EDAC15102C5CE8BA00FEA0DE /* FakeResponseData.swift */,
+				EDAC15122C5CE8DF00FEA0DE /* URLSessionFake.swift */,
+				EDAC15162C5CE93D00FEA0DE /* FakeLoginDatas.json */,
 				ED9F37572C595D1F00C92599 /* FakeAccountDatas.json */,
-				ED9F37592C595D5E00C92599 /* FakeTransfertMoneyDatas.json */,
-				ED9970302C4866B700BED7B1 /* FakeLoginDatas.json */,
-				ED9F375B2C595D9A00C92599 /* ViewModelTests */,
-				ED9F37562C595BEB00C92599 /* ServiceTest */,
+				EDAC151A2C5CE98200FEA0DE /* FakeTransfertDatas.json */,
+				EDAC151C2C5CE9A500FEA0DE /* AuraViewmodelTest.swift */,
 			);
 			path = AuraTests;
 			sourceTree = "<group>";
@@ -295,8 +276,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED9970312C4866B700BED7B1 /* FakeLoginDatas.json in Resources */,
-				ED9F375A2C595D5E00C92599 /* FakeTransfertMoneyDatas.json in Resources */,
+				EDAC15172C5CE93D00FEA0DE /* FakeLoginDatas.json in Resources */,
+				EDAC151B2C5CE98200FEA0DE /* FakeTransfertDatas.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,11 +307,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDA18CF92C46F26F00726A7C /* AuraServiceTestCase.swift in Sources */,
-				ED9F375D2C595DDE00C92599 /* MockAuthenticationService.swift in Sources */,
-				EDA18D042C470D6300726A7C /* URLSessionFake.swift in Sources */,
-				EDA18D022C46F4C300726A7C /* FakeResponseData.swift in Sources */,
-				ED9F375F2C595E0A00C92599 /* AuraViewmodelTest.swift in Sources */,
+				EDAC15112C5CE8BA00FEA0DE /* FakeResponseData.swift in Sources */,
+				EDAC151D2C5CE9A500FEA0DE /* AuraViewmodelTest.swift in Sources */,
+				EDAC15132C5CE8DF00FEA0DE /* URLSessionFake.swift in Sources */,
+				EDAC150F2C5CE86F00FEA0DE /* AuraServiceTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

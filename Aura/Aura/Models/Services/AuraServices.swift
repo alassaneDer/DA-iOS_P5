@@ -9,7 +9,7 @@
 import Foundation
 
 // erreur au niveau de la func Login
-enum AuthenticationError: Error {
+enum AuthenticationError: Error, Equatable {
     case invalidCredentials
     case custom(errorMessage: String)
 }
@@ -31,8 +31,6 @@ struct LoginRequestBody: Codable {
 // login response body : because my response in the server.js has the sames
 struct LoginResponse: Decodable {
     let token: String?
-//    let message: String?  // je comprends pas leur role ici
-//    let success: Bool?
 }
 
 // getting all account
@@ -72,7 +70,7 @@ struct AccountTransaction: Codable {
 
 class AuraService {
     static var shared = AuraService()
-    private init() {} // je peux pas le mettre en private (je pourrais pas utiliser la func dans le VM en l'initialisant
+    private init() {}
     
     private var task : URLSessionDataTask?
     private var loginSession = URLSession(configuration: .default)
@@ -99,13 +97,13 @@ class AuraService {
         var request = URLRequest(url: authenticationUrl)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try? JSONEncoder().encode(body)  // why not .utf8?
+        request.httpBody = try? JSONEncoder().encode(body)
         
-        // perform the request : je pense qu'on crée une tache ici
+        // perform the request
         task = loginSession.dataTask(with: request) { data, response, error in
             // extract out the datas
             guard let data = data, error == nil else {
-//                completionHandler(.failure(.custom(errorMessage: "No data"))) // décommenté, test failed
+                completionHandler(.failure(.custom(errorMessage: "No data")))
                 return
             }
             // response
@@ -116,7 +114,7 @@ class AuraService {
             
             // decode our response
             guard let loginResponse = try? JSONDecoder().decode(LoginResponse.self, from: data) else {
-//                completionHandler(.failure(.invalidCredentials))  // décommenté, test failed
+               completionHandler(.failure(.invalidCredentials))
                 return
             }
             
@@ -144,13 +142,20 @@ class AuraService {
         request.httpMethod = "GET"
         request.addValue(token, forHTTPHeaderField: "Token")
         task = allAccountSession.dataTask(with: request) { data, response, error in
+            
             guard let data = data, error == nil else {
-//                completion(.failure(.noData)) // idem
+                completion(.failure(.noData))
                 return
             }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completion(.failure(.invalidResponse))
+                return
+            }
+            
             guard let accounts = try? JSONDecoder().decode(Account.self, from: data) else {
                 print("DEBUG: fail to decode")
-//                completion(.failure(.decodingError))  // idem
+                completion(.failure(.decodingError))
                 return
             }
             
@@ -181,5 +186,6 @@ class AuraService {
             completion(.success(()))
         }
         task?.resume()
+        
     }
 }

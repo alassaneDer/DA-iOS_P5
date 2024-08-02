@@ -20,25 +20,19 @@ class AuthenticationViewModel: ObservableObject {
         self.onLoginSucceed = callback
     }
     
-    func login() {
+    func loginVM() {
         errorMessage = nil
         let defaults = UserDefaults.standard  // pour stocker token : à changer plutard
         
         auraService.login(username: username, password: password) { result in
-            DispatchQueue.main.async {
-                switch result {
-                    case .success(let token):
-                        defaults.setValue(token, forKey: "auraToken")   // pour stocker token
-                    self.onLoginSucceed()
-                    case .failure:
-                    self.errorMessage = "Login or Password invalid"
-                }
+            switch result {
+            case .success(let token):
+                defaults.setValue(token, forKey: "auraToken")   // pour stocker token
+                self.onLoginSucceed()
+            case .failure(let errorMessage):
+                self.errorMessage = errorMessage.localizedDescription
             }
-          
         }
-        
-        
-        
         print("login with \(username) and \(password)")
     }
 }

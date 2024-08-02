@@ -25,20 +25,19 @@ class FakeResponseData {
     }
     
     static var accountCorrectData: Data {
-        let bundle = Bundle(for: FakeResponseData.self) //recupérer le bon bundle
-        let url = bundle.url(forResource: "FakeAccountDatas", withExtension: "json")    // recupere url
-        let data = try! Data(contentsOf: url!)  // recup données
+        let bundle = Bundle(for: FakeResponseData.self)
+        let url = bundle.url(forResource: "FakeAccountDatas", withExtension: "json")
+        let data = try! Data(contentsOf: url!)
         return data
     }
     
     static var transfertCorrectDatas: Data {
-        let bundle = Bundle(for: FakeResponseData.self) //recupérer le bon bundle
-        let url = bundle.url(forResource: "FakeTransfertDatas", withExtension: "json")    // recupere url
-        let data = try! Data(contentsOf: url!)  // recup données
+        let bundle = Bundle(for: FakeResponseData.self)
+        let url = bundle.url(forResource: "FakeTransfertDatas", withExtension: "json")
+        let data = try! Data(contentsOf: url!)
         return data
     }
     
     // simule json endommagé
     static let IncorrectData = "erreur".data(using: .utf8)!
-//    static let secondRequestIncorrectData = "secondRequest".data(using: .utf8)!
 }
