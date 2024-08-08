@@ -58,6 +58,30 @@ class AuraViewmodelTest: XCTestCase {
         XCTAssertEqual(viewModel.recentTransactions.count, 3)
     }
     
+    func test_Transfert_onPhoneNumberFail() {
+        let mockService = AuraService(loginSession: URLSessionFake(data: nil, response: nil, error: nil), allAccountSession: URLSessionFake(data: nil, response: nil, error: nil), transfertMoneySession: URLSessionFake(data: nil, response: nil, error: FakeResponseData.error))
+        
+        let viewModel = MoneyTransferViewModel(auraService: mockService)
+        
+        viewModel.recipient = "06891"
+        viewModel.amount = "1"
+        viewModel.sendMoneyVM()
+        
+        XCTAssertEqual(viewModel.transferMessage, "Erreur")
+    }
+
+    func test_Transfert_onEmailFail() {
+        let mockService = AuraService(loginSession: URLSessionFake(data: nil, response: nil, error: nil), allAccountSession: URLSessionFake(data: nil, response: nil, error: nil), transfertMoneySession: URLSessionFake(data: nil, response: nil, error: FakeResponseData.error))
+        
+        let viewModel = MoneyTransferViewModel(auraService: mockService)
+        
+        viewModel.recipient = "@gmail.com"
+        viewModel.amount = "1"
+        viewModel.sendMoneyVM()
+        
+        XCTAssertEqual(viewModel.transferMessage, "Erreur")
+    }
+    
     func test_Transfert_fail() {
         let mockService = AuraService(loginSession: URLSessionFake(data: nil, response: nil, error: nil), allAccountSession: URLSessionFake(data: nil, response: nil, error: nil), transfertMoneySession: URLSessionFake(data: nil, response: nil, error: FakeResponseData.error))
         
@@ -68,11 +92,25 @@ class AuraViewmodelTest: XCTestCase {
         XCTAssertEqual(viewModel.transferMessage, "Erreur")
     }
     
-    func test_Transfert_success() {
-        let mockService = AuraService(loginSession: URLSessionFake(data: nil, response: nil, error: nil), allAccountSession: URLSessionFake(data: nil, response: nil, error: nil), transfertMoneySession: URLSessionFake(data: FakeResponseData.transfertCorrectDatas, response: FakeResponseData.responseOk, error: nil))
+    func test_Transfert_onPhoneNumberSuccess() {
+        let mockService = AuraService(loginSession: URLSessionFake(data: nil, response: nil, error: nil), allAccountSession: URLSessionFake(data: nil, response: nil, error: nil), transfertMoneySession: URLSessionFake(data: Data(), response: FakeResponseData.responseOk, error: nil))
         
         let viewModel = MoneyTransferViewModel(auraService: mockService)
         
+        viewModel.recipient = "0689546801"
+        viewModel.amount = "1"
+        viewModel.sendMoneyVM()
+        
+        XCTAssertEqual(viewModel.transferMessage, "Transfert succeeded")
+    }
+
+    func test_Transfert_onEmailSuccess() {
+        let mockService = AuraService(loginSession: URLSessionFake(data: nil, response: nil, error: nil), allAccountSession: URLSessionFake(data: nil, response: nil, error: nil), transfertMoneySession: URLSessionFake(data: Data(), response: FakeResponseData.responseOk, error: nil))
+        
+        let viewModel = MoneyTransferViewModel(auraService: mockService)
+        
+        viewModel.recipient = "blabla@gmail.com"
+        viewModel.amount = "1"
         viewModel.sendMoneyVM()
         
         XCTAssertEqual(viewModel.transferMessage, "Transfert succeeded")

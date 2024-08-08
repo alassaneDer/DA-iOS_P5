@@ -35,12 +35,13 @@ class MoneyTransferViewModel: ObservableObject {
             return true
         } else if isEmailValid {
             return true
-        } else {
-            return false
         }
+        return false
+        
     }
     
     func sendMoneyVM() {
+        // récupérer le token dans le keychain
         auraService.transfertMoney(token: "") { result in
             switch result {
             case .success:
