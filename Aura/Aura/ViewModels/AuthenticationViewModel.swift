@@ -22,12 +22,12 @@ class AuthenticationViewModel: ObservableObject {
     
     func loginVM() {
         errorMessage = nil
-        let defaults = UserDefaults.standard  // pour stocker token : à changer plutard
+        let defaults = UserDefaults.standard  // pour stocker le token
         
         auraService.login(username: username, password: password) { result in
             switch result {
             case .success(let token):
-                defaults.setValue(token, forKey: "auraToken")   // pour stocker token
+                defaults.setValue(token, forKey: "auraToken")   // pour recuperer le token
                 self.onLoginSucceed()
             case .failure(let errorMessage):
                 self.errorMessage = errorMessage.localizedDescription

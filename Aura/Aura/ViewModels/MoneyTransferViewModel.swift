@@ -41,8 +41,12 @@ class MoneyTransferViewModel: ObservableObject {
     }
     
     func sendMoneyVM() {
-        // récupérer le token dans le keychain
-        auraService.transfertMoney(token: "") { result in
+        // recupère le token stocké sur UserDefaults
+        let defaults = UserDefaults.standard
+        guard let token = defaults.string(forKey: "auraToken") else {
+            return
+        }
+        auraService.transfertMoney(token: token) { result in
             switch result {
             case .success:
                 if self.isTransfertCompleted && !self.recipient.isEmpty {

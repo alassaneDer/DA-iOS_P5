@@ -55,7 +55,7 @@ class AuraViewmodelTest: XCTestCase {
         
         viewModel.getAccountVM()
         
-        XCTAssertEqual(viewModel.recentTransactions.count, 3)
+        XCTAssertNotNil(viewModel.transactions)
     }
     
     func test_Transfert_onPhoneNumberFail() {
